@@ -10,8 +10,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.willianantunes.androidplayground.R
 import br.com.willianantunes.androidplayground.services.persistence.Person
-import br.com.willianantunes.androidplayground.setup.personService
-import br.com.willianantunes.androidplayground.ui.adapter.PersonsAdapter
+import br.com.willianantunes.androidplayground.ui.PersonsView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 val KEY_PERSON = "KEY_PERSON"
@@ -19,7 +18,7 @@ val KEY_PERSON = "KEY_PERSON"
 class PersonsActivity : AppCompatActivity() {
     private lateinit var fabNewPerson: FloatingActionButton
     private lateinit var listView: ListView
-    private lateinit var personsAdapter: PersonsAdapter
+    private lateinit var personsView: PersonsView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +30,8 @@ class PersonsActivity : AppCompatActivity() {
 
     override fun onPostResume() {
         super.onPostResume()
-        personsAdapter.clear()
-        personsAdapter.addAll(personService.allPersons())
+        personsView.refresh()
+
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -43,21 +42,18 @@ class PersonsActivity : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.activity_persons__menu_remove -> {
-                with(item.menuInfo as AdapterView.AdapterContextMenuInfo) {
-                    val chosenPerson = this@PersonsActivity.personsAdapter.getItem(this.position) as Person
-                    this@PersonsActivity.remove(chosenPerson)
-                }
+                personsView.confirmDeletion(item)
             }
         }
         return super.onContextItemSelected(item);
     }
 
     private fun initializeComponents() {
-        personsAdapter = PersonsAdapter(this, android.R.layout.simple_list_item_1)
+        personsView = PersonsView(this)
         fabNewPerson = findViewById<FloatingActionButton>(R.id.activity_persons_fab_new_person)
         listView = findViewById<ListView>(R.id.activity_persons_lv)
         with(listView) {
-            this.adapter = personsAdapter
+            this.adapter = personsView.adapter
             this@PersonsActivity.registerForContextMenu(this)
         }
     }
@@ -76,9 +72,5 @@ class PersonsActivity : AppCompatActivity() {
         Intent(this@PersonsActivity, PersonFormActivity::class.java)
             .also { it.putExtra(KEY_PERSON, person) }
             .apply { startActivity(this) }
-    }
-
-    private fun remove(person: Person) {
-        person.id?.let { personService.deletePerson(it) }.also { personsAdapter.remove(person) }
     }
 }

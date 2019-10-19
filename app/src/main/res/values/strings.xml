@@ -10,4 +10,8 @@
     <string name="persons">Pessoas</string>
     <string name="title_person_form_edit">Editar pessoa</string>
     <string name="title_person_form_new">Nova pessoa</string>
+    <string name="title_person_alert_deletion">Removendo pessoa</string>
+    <string name="message_person_alert_deletion">Tem certeza dessa ação?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>
