@@ -51,6 +51,10 @@ In order to run tests, just issue the following command at the root folder:
 - Helpers:
     - https://github.com/Kotlin/anko
     - https://www.raywenderlich.com/5576-android-ktx-tutorial-getting-started
+- Adapters:
+    - https://medium.com/mindorks/custom-array-adapters-made-easy-b6c4930560dd
+- Intents:
+    - https://www.raywenderlich.com/4700198-android-intents-tutorial-with-kotlin
 
 ## Videos
 
