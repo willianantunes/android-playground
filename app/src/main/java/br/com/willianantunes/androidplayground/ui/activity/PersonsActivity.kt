@@ -12,10 +12,12 @@ import br.com.willianantunes.androidplayground.R
 import br.com.willianantunes.androidplayground.services.persistence.Person
 import br.com.willianantunes.androidplayground.setup.personService
 import br.com.willianantunes.androidplayground.ui.adapter.PersonsAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 val KEY_PERSON = "KEY_PERSON"
 
 class PersonsActivity : AppCompatActivity() {
+    private lateinit var fabNewPerson: FloatingActionButton
     private lateinit var listView: ListView
     private lateinit var personsAdapter: PersonsAdapter
 
@@ -29,6 +31,7 @@ class PersonsActivity : AppCompatActivity() {
 
     override fun onPostResume() {
         super.onPostResume()
+        personsAdapter.clear()
         personsAdapter.addAll(personService.allPersons())
     }
 
@@ -51,6 +54,7 @@ class PersonsActivity : AppCompatActivity() {
 
     private fun initializeComponents() {
         personsAdapter = PersonsAdapter(this, android.R.layout.simple_list_item_1)
+        fabNewPerson = findViewById<FloatingActionButton>(R.id.activity_persons_fab_new_person)
         listView = findViewById<ListView>(R.id.activity_persons_lv)
         with(listView) {
             this.adapter = personsAdapter
@@ -59,12 +63,15 @@ class PersonsActivity : AppCompatActivity() {
     }
 
     private fun configureActions() {
-        listView.setOnItemClickListener { parent, view, position, id ->
-            opensFormAsEditMode(parent, position)
-        }
+        listView.setOnItemClickListener { parent, view, position, id -> opensFormInEditMode(parent, position) }
+        fabNewPerson.setOnClickListener { opensFormInNewMode() }
     }
 
-    private fun opensFormAsEditMode(parent: AdapterView<*>, position: Int) {
+    private fun opensFormInNewMode() {
+        startActivity(Intent(this, PersonFormActivity::class.java))
+    }
+
+    private fun opensFormInEditMode(parent: AdapterView<*>, position: Int) {
         val person = parent.getItemAtPosition(position) as Person
         Intent(this@PersonsActivity, PersonFormActivity::class.java)
             .also { it.putExtra(KEY_PERSON, person) }
