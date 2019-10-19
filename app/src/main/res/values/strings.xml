@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Android Playground</string>
+    <string name="content_description_manage_persons">Manage persons</string>
+    <string name="name">Nome</string>
+    <string name="phone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="birthday">Aniversário</string>
+    <string name="save_person">Salvar pessoa</string>
+    <string name="remove">Remover</string>
+    <string name="persons">Pessoas</string>
 </resources>
