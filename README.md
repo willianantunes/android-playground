@@ -21,6 +21,7 @@ In order to run tests, just issue the following command at the root folder:
 - https://github.com/alura-cursos/android-sync-parte-1
 - https://github.com/alura-cursos/android-sync-parte-2
 - https://github.com/alura-cursos/android-sync-parte-3
+- https://github.com/alura-cursos/android-persistencia-web/
 - https://github.com/alura-cursos/android-teste-espresso-parte-1
 - https://github.com/alura-cursos/android-teste-espresso-parte-2
 - https://github.com/alura-cursos/tdd-android-parte-1
@@ -44,6 +45,7 @@ In order to run tests, just issue the following command at the root folder:
     - https://developer.android.com/studio/write/translations-editor
 - Room (ORM):
     - https://developer.android.com/training/data-storage/room/
+    - https://developer.android.com/training/data-storage/room/relationships
 - DI:
     - https://www.raywenderlich.com/9457-dependency-injection-with-koin
     - https://androidwave.com/dagger2-android-example/
@@ -55,6 +57,12 @@ In order to run tests, just issue the following command at the root folder:
     - https://medium.com/mindorks/custom-array-adapters-made-easy-b6c4930560dd
 - Intents:
     - https://www.raywenderlich.com/4700198-android-intents-tutorial-with-kotlin
+- Parcelable:
+    - https://proandroiddev.com/parcelable-in-kotlin-here-comes-parcelize-b998d5a5fcac
+- HTTP clients:
+    - https://square.github.io/retrofit/
+        - https://medium.com/@tsaha.cse/advanced-retrofit2-part-1-network-error-handling-response-caching-77483cf68620
+    - https://developer.android.com/training/volley
 
 ## Videos
 
